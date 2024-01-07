@@ -1,7 +1,7 @@
 import express from 'express'
 
 const app = express()
-const port = 3000
+const port = 3299
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -10,10 +10,10 @@ const password = "banana"
 
 app.get('/set', (req,res) => {
   res.send(`
-    <form method="post" action="/set">
-      <input size="40" name="text" />
-      <input type="password" name="pwd" />
-      <input type="submit" />
+    <form method="post" >
+      <div><input size="40" name="text" value="${message}" /></div>
+      <div><input type="password" name="pwd" /></div>
+      <div><input type="submit" value="set" /></div>
     </form>
   `)
 })
@@ -22,14 +22,13 @@ app.post('/set', (req,res) => {
   if (req.body.pwd === password){
     message = req.body.text
   }
-  res.send(`${message} <br /><a href="/set">set</a>`)
+  res.send(`${message} <br /><a href="set">set</a> <a href=".">view</a>`)
 })
 
 app.get('*', (req, res) => {
-  res.send(message)
+  res.send(`<br /> <br /><center><h1>${message}</h1></center>`)
 })
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
-
