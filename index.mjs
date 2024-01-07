@@ -23,27 +23,24 @@ ${content}
 </head>
 `
 
-app.get('/set', (req,res) => {
-  res.send(page(`
+const form = (message) => `
     <form method="post" >
       <div><input id="text" size="60" name="text" value="${escape(message)}" /></div>
       <div><input id="pwd" type="password" name="pwd" /></div>
-      <div><input id="submit" type="submit" value="set" /></div>
+      <div><input id="submit" type="submit" value="set" /><span class="controls"> | <a href=".">view</a></span>
     </form>
-  `))
+    <div class="message">${escape(message)}</div>
+`
+
+app.get('/set', (req,res) => {
+  res.send(page(form(message)))
 })
 
 app.post('/set', (req,res) => {
   if (req?.body?.pwd === password){
     message = req?.body?.text
   }
-  res.send(page(`
-    <div class="controls">
-      <a href="set">set</a> 
-      <a href=".">view</a>
-    </div>
-    <div class="message">${escape(message)}</div>
-  `))
+  res.send(page(form(message)))
 })
 
 app.get('*', (req, res) => {

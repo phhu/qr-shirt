@@ -9,9 +9,7 @@
 .controls {
   font-size:60px;
   font-family: Helvetica;
-  text-align: center;
 }
-
 
 body {
   margin: 20px;
@@ -20,7 +18,6 @@ body {
 input {
   height: 60px;
   font-size:45px;
-
 }
 
 form {
