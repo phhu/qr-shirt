@@ -1,0 +1,28 @@
+
+.message{
+  font-size:60px;
+  font-family: Helvetica;
+  text-align: center;
+  margin: 20% auto;
+}
+
+.controls {
+  font-size:60px;
+  font-family: Helvetica;
+  text-align: center;
+}
+
+
+body {
+  margin: 20px;
+}
+
+input {
+  height: 60px;
+  font-size:45px;
+
+}
+
+form {
+  margin: 50px;
+}
