@@ -1,12 +1,13 @@
 import express from 'express'
+import 'dotenv/config'
 
 const app = express()
-const port = 3299
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+const port = process.env?.["PORT"] || 3000
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
-let message = "hello, I like dancing."
-const password = "banana"
+let message = process.env?.["DEFAULT_MESSAGE"] || "I like dancing"
+const password = process.env?.["PASSWORD"]
 
 app.get('/set', (req,res) => {
   res.send(`
@@ -19,8 +20,8 @@ app.get('/set', (req,res) => {
 })
 
 app.post('/set', (req,res) => {
-  if (req.body.pwd === password){
-    message = req.body.text
+  if (req?.body?.pwd === password){
+    message = req?.body?.text
   }
   res.send(`${message} <br /><a href="set">set</a> <a href=".">view</a>`)
 })
